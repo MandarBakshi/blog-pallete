@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 function AppNavbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-lg bg-primary sticky-top" data-bs-theme="dark">
   <div className="container">
     <Link className="navbar-brand" to="/">Blog Pallete</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#responsiveNav" >

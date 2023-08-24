@@ -12,7 +12,7 @@ function PostItem(props) {
           <img className="avatar ms-1 me-2 my-1" src={userPlaceholder} />
           <div>
             <a className="fw-semibold" style={{ display: "block" }} href="#">{props.postData.username}</a>
-            <span style={{ display: "block" }}>21/08/2023 at 7:30pm</span>
+            <span style={{ display: "block" }}>{props.postData.date_posted}</span>
           </div>
         </div>
         <div className="card-body">
@@ -35,7 +35,7 @@ function PostItem(props) {
 
 function LoadingSpinner() {
   return (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex align-items-center justify-content-center" style={{height: "70vh"}}>
       <div className="spinner-border" role="status"><span className="visually-hidden">Loading...</span></div>
     </div>
   );

@@ -38,7 +38,7 @@ export async function getAllPosts(req, res) {
 
 
 export async function getSpecificPost(req, res) {
-    let q = `SELECT
+    let q1 = `SELECT
     posts.postid,
     users.userid,
     users.firstname,
@@ -55,15 +55,34 @@ export async function getSpecificPost(req, res) {
     WHERE posts.postid = ?;
     `;
 
+    let q2 = `SELECT
+    posts.postid,
+    users.userid,
+    users.firstname,
+    users.lastname,
+    users.username,
+    posts.post_title,
+    posts.post_content,
+    posts.date_posted,
+    posts.date_modified
+
+    FROM posts
+    LEFT JOIN users ON posts.userid = users.userid
+
+    LIMIT 15;
+    `;
+
     let postid = req.params["postid"];
-    console.log(`\nparam = ${postid}\n`);
+    // console.log(`\nparam = ${postid}\n`);
 
     try {
-        let [resultData] = await queryPool.query(q, [postid]);
+        let [resultData] = await queryPool.query(q1, [postid]);
+        let [recommendedData] = await queryPool.query(q2);
         // console.log(resultData);
         return res.status(200).json({
             success: true,
-            result: resultData
+            result: resultData,
+            recommended: recommendedData
         });
     } catch (error) {
         console.log(error);
